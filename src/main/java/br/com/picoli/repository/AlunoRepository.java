@@ -7,5 +7,5 @@ import java.util.Optional;
 
 
 public interface AlunoRepository extends JpaRepository<Aluno, Integer> {
-        public Optional<Aluno> findAlunoByEmailAndSenha(String emailaluno, String senhaaluno);
+        public Optional<Aluno> findAlunoByEmailalunoAndSenhaaluno(String emailaluno, String senhaaluno);
 }

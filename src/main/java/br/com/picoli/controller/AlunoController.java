@@ -29,16 +29,20 @@ public class AlunoController {
         return listaAluno;
     }
 
-    @PostMapping("/autenticaAluno")
-    public Aluno autenticaAluno(@RequestBody @Valid AlunoAutenticavel user){
-        Optional<Aluno> optionalAluno = alunoRepository.findAlunoByEmailAndSenha(user.getEmailaluno(),user.getSenhaaluno());
+    @PostMapping("/autentica")
+    public Aluno autentica(@RequestBody @Valid AlunoAutenticavel alunoAutenticavel){
+        Optional<Aluno> optionalAluno = alunoRepository.findAlunoByEmailalunoAndSenhaaluno(alunoAutenticavel.getEmailaluno(),
+                alunoAutenticavel.getSenhaaluno());
         if (optionalAluno.isPresent()){
-            Aluno aluno = optionalAluno.get();
-            System.out.println("Encontrou o aluno");
+             Aluno aluno = optionalAluno.get();
+            System.out.println("encontrou o aluno");
             return aluno;
-        }else{
-            System.out.println("Aluno não encontrado");
+        }else {
+            System.out.println("não encontrou aluno");
             return null;
         }
     }
+
+
+
 }

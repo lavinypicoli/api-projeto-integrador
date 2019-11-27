@@ -25,5 +25,16 @@ public class AtividadeController {
         return listaAtividade;
     }
 
+    @DeleteMapping("/delete")
+    public void deletaAtividade(@RequestBody @Valid Atividade atividade){
+        atividadeRepository.delete(atividade);
+    }
+
+    @PutMapping("/edit")
+    public Atividade atualizaAtividade(@RequestBody @Valid Atividade atividade){
+        return atividadeRepository.save(atividade);
+    }
+
+
 
 }
