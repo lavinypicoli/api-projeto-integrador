@@ -29,6 +29,14 @@ public class Atividade {
             )
     private List<Aluno> alunos;
 
+    public List<Aluno> getAlunos() {
+        return alunos;
+    }
+
+    public void setAlunos(List<Aluno> alunos) {
+        this.alunos = alunos;
+    }
+
     @ManyToOne
     @JoinColumn(name = "idfunc")
     private Funcionario funcionario;

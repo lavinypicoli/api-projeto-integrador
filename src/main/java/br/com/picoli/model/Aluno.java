@@ -21,6 +21,14 @@ public class Aluno {
     @ManyToMany(mappedBy = "alunos")
     private List<Atividade> atividades;
 
+    public List<Atividade> getAtividades() {
+        return atividades;
+    }
+
+    public void setAtividades(List<Atividade> atividades) {
+        this.atividades = atividades;
+    }
+
     public Aluno(){}
 
 
