@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -23,22 +24,30 @@ public class AlunoParticipaController {
     AlunoRepository alunoRepository;
 
     @PostMapping("/salvaParticipa")
-    public AlunoParticipaDTO salvaParticipa(@RequestBody AlunoParticipaDTO alunoParticipaDTO){
-            Integer iduseraluno = alunoParticipaDTO.getIdaluno();
-            Integer idatividade = alunoParticipaDTO.getIdatividade();
+    public boolean salvaParticipa(@RequestBody Map<String, Object> json){
+
+        String idalunop = (String) json.get("idalunop");
+        String idatividadep = (String) json.get("idatividadep");
+        Integer idaluno = Integer.parseInt(idalunop);
+        Integer idatividade = Integer.parseInt(idatividadep);
+
+        System.out.println(idaluno);
+        System.out.println(idatividade);
 
 
-            Optional<Aluno> optionalAluno = alunoRepository.findById(iduseraluno);
+
+
+            Optional<Aluno> optionalAluno = alunoRepository.findById(idaluno);
             List<Atividade> atividades =  atividadeRepository.findAllByIdativ(idatividade);
 
 
-             Aluno aluno = optionalAluno.get();
+            Aluno aluno = optionalAluno.get();
             aluno.setAtividades(atividades);
 
            alunoRepository.save(aluno);
 
 
-           return null;
+           return true;
 
     }
 }
